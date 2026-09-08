@@ -6,6 +6,7 @@ DIFFICULTY_CHOICES = [
     ('hard', 'Hard'),
 ]
 
+
 class QuizGeneratorForm(forms.Form):
     topic = forms.CharField(
         max_length=150,
@@ -13,7 +14,7 @@ class QuizGeneratorForm(forms.Form):
         widget=forms.TextInput(attrs={
             'id': 'id_topic',
             'class': 'form-input',
-            'placeholder': 'e.g. World War 2, Cricket, Quantum Physics, Biology, Movies...',
+            'placeholder': 'e.g. World War 2, Cricket, Quantum Physics, Biology, Movies, Python...',
             'autocomplete': 'off',
         }),
         label="Topic"

@@ -1075,6 +1075,27 @@
             });
 
             switchSection(dom.sectionResults);
+
+            // Automatically record quiz result to database
+            if (quizState.topic && total > 0) {
+                try {
+                    fetch('/api/save-history/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({
+                            topic: quizState.topic,
+                            difficulty: quizState.difficulty,
+                            score: correct,
+                            total_questions: total
+                        })
+                    }).catch(err => console.debug('History save skipped:', err));
+                } catch (e) {
+                    console.debug(e);
+                }
+            }
         }
 
         function restartCurrentQuiz() {
